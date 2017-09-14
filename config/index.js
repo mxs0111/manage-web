@@ -23,11 +23,19 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    port: 8082,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    // 此处是留给我们配置代理的
+    proxyTable: {
+      // 将接口代理到本地
+      '/api/v1/**': {
+        target: 'https://cnodejs.org', //接口的域名
+        secure: false,
+        changeOrigin: false
+      }
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
